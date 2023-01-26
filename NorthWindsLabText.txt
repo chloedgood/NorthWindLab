@@ -1,0 +1,62 @@
+SELECT * FROM customers;
+
+SELECT DISTINCT * FROM customers;
+
+SELECT * FROM customers WHERE CustomerID LIKE 'BL%';
+
+SELECT * FROM orders ORDER BY OrderID LIMIT 100;
+
+SELECT * FROM customers WHERE PostalCode IN ("1010", "3012", "12209", "05023");
+
+SELECT * FROM orders WHERE ShipRegion IS NOT NULL;
+
+SELECT * FROM customers ORDER BY Country, City;
+
+INSERT INTO customers(ContactName) VALUES ('Joe');
+
+UPDATE orders SET ShipRegion = "EuroZone" WHERE ShipCountry = "France";
+
+DELETE FROM `order details` WHERE Quantity = '1';
+
+SELECT AVG(Quantity), max(quantity),min(quantity) FROM `order details`;
+
+SELECT AVG(Quantity), max(quantity),min(quantity) FROM `order details`GROUP BY OrderID;
+
+SELECT CustomerID FROM orders WHERE orderID = '10290';
+
+SELECT * 
+	FROM customers
+    JOIN orders
+    ON customers.CustomerID = orders.customerID
+    ;
+SELECT * 
+	FROM customers
+    LEFT JOIN orders
+    ON customers.CustomerID = orders.customerID
+    ;
+SELECT * 
+	FROM customers
+    RIGHT JOIN orders
+    ON customers.CustomerID = orders.customerID
+    ;
+
+
+SELECT *
+	FROM customers
+    JOIN orders
+    ON orders.ShipCity = orders.ShipCountry
+    WHERE ShipCity = 'London'
+    ;
+
+
+SELECT orders.ShipName
+	FROM orders
+    LEFT JOIN `order details` ON orders.ORderID = `order details`.OrderID
+	Join products ON `order details`.ProductID = products.ProductID
+    WHERE products.Discontinued = '1'
+    ;
+
+
+SELECT FirstName FROM employees;
+
+SELECT * FROM employees WHERE FirstName ORDER BY ReportsTo = 'Andrew';
